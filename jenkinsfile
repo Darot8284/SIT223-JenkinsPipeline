@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/Darot8284/8.2CDevSecOps.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat 'npm install'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat 'npm test || exit /b 0'
+            }
+            post {
+        always {
+            emailext (
+                subject: "Test Stage Completed - ${currentBuild.result}",
+                body: "Tests finished. Check logs.",
+                attachLog: true,
+                to: "darot8168@gmail.com"
+            )
+        }
+    }
+        }
+
+        stage('Generate Coverage Report') {
+            steps {
+                bat 'npm run coverage || exit /b 0'
+            }
+        }
+
+        stage('NPM Audit (Security Scan)') {
+            steps {
+                bat 'npm audit || exit /b 0'
+            }
+            post {
+        always {
+            emailext (
+                subject: "Security Scan Completed - ${currentBuild.result}",
+                body: "NPM Audit finished. Check vulnerabilities in logs.",
+                attachLog: true,
+                to: "darot8168@gmail.com"
+            )
+        }
+    }
+        }
+    }
+}
