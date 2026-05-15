@@ -44,5 +44,10 @@ pipeline {
                 echo 'Deploying application to production server'
             }
         }
+        stage('Complete') {
+            steps {
+                echo 'Completed ... '
+            }
+        }
     }
 }
