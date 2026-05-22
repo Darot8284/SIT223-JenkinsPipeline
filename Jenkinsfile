@@ -44,10 +44,16 @@ pipeline {
                 echo 'Deploying application to production server'
             }
         }
+        stage('testing scm') {
+            steps {
+                echo 'testing ... '
+            }
+        }
         stage('Complete') {
             steps {
                 echo 'Completed ... '
             }
         }
+
     }
 }
