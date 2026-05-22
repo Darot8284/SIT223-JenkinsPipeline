@@ -46,7 +46,7 @@ pipeline {
         }
         stage('testing scm') {
             steps {
-                echo 'testing ... '
+                echo 'testing .... '
             }
         }
         stage('Complete') {
