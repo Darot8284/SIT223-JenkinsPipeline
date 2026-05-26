@@ -1,66 +1,46 @@
 pipeline {
     agent any
 
-    triggers {
-        pollSCM('H/1 * * * *')   // Checks GitHub every 2 minutes
-    }
-
     stages {
-
         stage('Build') {
             steps {
-                echo 'Stage 1: Build'
-                echo 'Task: Compile and package application'
-                echo 'Tool: Maven'
+                echo 'Stage 1: Build - Maven'
             }
         }
 
         stage('Unit and Integration Tests') {
             steps {
-                echo 'Stage 2: Unit and Integration Tests'
-                echo 'Task: Execute unit and integration tests'
-                echo 'Tool: JUnit'
+                echo 'Stage 2: JUnit'
             }
         }
 
         stage('Code Analysis') {
             steps {
-                echo 'Stage 3: Code Analysis'
-                echo 'Task: Analyse code quality and standards'
-                echo 'Tool: SonarQube'
+                echo 'Stage 3: SonarQube'
             }
         }
 
         stage('Security Scan') {
             steps {
-                echo 'Stage 4: Security Scan'
-                echo 'Task: Scan for security vulnerabilities'
-                echo 'Tool: OWASP Dependency-Check'
+                echo 'Stage 4: OWASP Dependency Check'
             }
         }
 
         stage('Deploy to Staging') {
             steps {
-                echo 'Stage 5: Deploy to Staging'
-                echo 'Task: Deploy application to staging environment'
-                echo 'Tool: AWS EC2'
+                echo 'Stage 5: AWS EC2 Staging'
             }
         }
 
         stage('Integration Tests on Staging') {
             steps {
-                echo 'Stage 6: Integration Tests on Staging'
-                echo 'Task: Validate application in staging environment'
-                echo 'Tool: Selenium'
+                echo 'Stage 6: Selenium'
             }
         }
 
         stage('Deploy to Production') {
             steps {
-                echo 'Stage 7: Deploy to Production'
-                echo 'Task: Deploy application to production environment'
-                echo 'Tool: AWS EC2'
-                echo 'status: completed'
+                echo 'Stage 7: AWS EC2 Production'
             }
         }
     }
