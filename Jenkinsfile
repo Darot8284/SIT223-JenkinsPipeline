@@ -60,7 +60,7 @@ pipeline {
                 echo 'Stage 7: Deploy to Production'
                 echo 'Task: Deploy application to production environment'
                 echo 'Tool: AWS EC2'
-                echo 'Tool: completed'
+                echo 'status: completed'
             }
         }
     }
