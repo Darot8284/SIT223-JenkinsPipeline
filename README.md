@@ -6,5 +6,4 @@ make changes to the readme file
 test1
 test2
 test
-testj
-asd
+testing
